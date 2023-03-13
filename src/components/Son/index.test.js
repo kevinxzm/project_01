@@ -4,14 +4,14 @@ import Son from ".";
 
 // console.log('aaa');
 
-// test("if son has a number", () => {
-//   render(<Son />);
-//   //   const sonText = screen.getByText('son');
-//   const sonText = screen.getByTextId("son");
-//   console.log(sonText);
+test("if son has a number", () => {
+  render(<Son />);
+    const sonText = screen.getByText('son');
+  // const sonText = screen.getByTextId("son");
+  console.log(sonText);
   
-//   expect(sonText).toBeInTheDocument();
-// });
+  expect(sonText).toBeInTheDocument();
+});
 
 
 
