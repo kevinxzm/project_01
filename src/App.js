@@ -1,24 +1,41 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useReducer } from "react";
+import Father from "./components/Father";
+
+export const Context = React.createContext();
+
+const intialValue = { uname: "reese", age: 20 };
+const reducer = (value, action) => {
+  if (action.type === "add") {
+    return { ...value, age: value.age + 1 };
+  }
+
+  if (action.type === "sub") {
+    return { ...value, age: value.age - 1 };
+  }
+};
 
 function App() {
+  const [value, dispatch] = useReducer(reducer, intialValue);
+  function add() {
+    return { type: "add" };
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+    <Context.Provider value={{ value, dispatch }}>
+      <div className="App" data-testid="mytest">
+        app
+        <div>{value.age}</div>
+        <button
+          onClick={() => {
+            dispatch(add());
+          }}
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          +1
+        </button>
+        <hr />
+        <Father></Father>
+      </div>
+    </Context.Provider>
   );
 }
 
